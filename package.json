@@ -3,16 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "riot": "^3.0.5"
+  },
   "devDependencies": {
     "@types/jquery": "^2.0.39",
+    "@types/riot": "^2.6.1",
     "http-server": "^0.9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-ts": "tsc",
     "build-pug": "pug pug --out ./html --pretty",
-    "build": "npm run build-pug && npm run build-ts"
+    "build-tag": "riot view --template pug --compact --style sass",
+    "build": "npm run build-pug && npm run build-ts && npm run build-tag",
+    "preinstall": "npm i typescript riot pug-cli -g"
   },
   "repository": {
     "type": "git",

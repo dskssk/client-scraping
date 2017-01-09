@@ -2,11 +2,9 @@
 $(() => {
   // 小説家になろうの日間ランキングURL
   const URL = 'http://yomou.syosetu.com/rank/list/type/daily_total/';
-  const get_start = Date.now();
-  
+
   $.get(URL).then(data => {
-    const get_end = Date.now();
-    alert(`get_time: ${get_end - get_start }ミリ秒`);
+   
     const $root = $(data.results[0]);
     const $ranking = $root.find('.ranking_inbox');
     const $items = $ranking.find('.ranking_list');
@@ -24,12 +22,14 @@ $(() => {
 
     // もっとも多い文字数の小説は？
     const no1charcount = infos.sort((a,b) => b.char_count - a.char_count)[0];
-    alert(`もっとも多い文字数: ${no1charcount.rank}位, ${no1charcount.title}: ${ no1charcount.char_count}`);
+    no1charcount['name'] = 'もっとも多い文字数';
 
     // もっとも少ない文字数の小説は？
     const no1min = infos.sort((a,b) => a.char_count - b.char_count)[0];
-    alert(`もっとも少ない文字数: ${no1min.rank}位, ${no1min.title}: ${ no1min.char_count}`);
+    no1min['name'] = 'もっとも少ない文字数';
 
+    riot.mount('foo-bars', {items: [no1charcount, no1min]});
+    
     /*
 
     // 各順位のデータ情報は以下。
