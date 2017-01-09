@@ -2,6 +2,7 @@ html
 css
 js
 node_modules
+view/*.js
 
 # Logs
 logs
